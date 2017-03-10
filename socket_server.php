@@ -6,7 +6,8 @@ if (!$socket) {
 }
 
 while ($connect = stream_socket_accept($socket, -1)) {
-    $headers = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n Hello";
+    $name = stream_socket_get_name($connect, true);
+    $headers = "OK\n Hello $name \n";
     fwrite($connect, $headers);
     fclose($connect);
 }
